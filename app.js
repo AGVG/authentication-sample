@@ -13,8 +13,6 @@ const authController = require("./routes/auth-controller");
 const index          = require('./routes/index');
 const users          = require('./routes/users');
 
-
-
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/passport-local");
 
