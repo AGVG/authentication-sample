@@ -1,15 +1,17 @@
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-const session    = require("express-session");
-const passport   = require("passport");
+const express      = require('express');
+const path         = require('path');
+const favicon      = require('serve-favicon');
+const logger       = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+const session      = require("express-session");
+const passport     = require("passport");
+const cors         = require('cors');
+
 
 const authController = require("./routes/auth-controller");
-var index            = require('./routes/index');
-var users            = require('./routes/users');
+const index          = require('./routes/index');
+const users          = require('./routes/users');
 
 
 
@@ -21,8 +23,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-require('./config/passport')(passport);
 
+require('./config/passport')(passport);
+app.use(cors());
 app.use(session({
   secret: "passport-local-strategy",
   resave: true,
